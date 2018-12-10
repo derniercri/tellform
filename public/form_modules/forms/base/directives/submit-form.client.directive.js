@@ -22,7 +22,7 @@ angular.module('view-form').directive('submitFormDirective', ['$http', 'TimeCoun
 		        var NOSCROLL = false;
 		        var FORM_ACTION_ID = 'submit_field';
                 $scope.forms = {};
-                
+
 				//Don't start timer if we are looking at a design preview
                 if($scope.ispreview){
                     TimeCounter.restartClock();
@@ -146,7 +146,7 @@ angular.module('view-form').directive('submitFormDirective', ['$http', 'TimeCoun
                     if($scope.selected === null || (!field_id && field_index === null) )  {
                     	return;
                     }
-	    			
+
 	    			if(!field_id){
 	    				field_id = $scope.myform.visible_form_fields[field_index]._id;
 					} else if(field_index === null){
@@ -243,12 +243,12 @@ angular.module('view-form').directive('submitFormDirective', ['$http', 'TimeCoun
                             field_index = $scope.selected.index+1;
                             $scope.setActiveField(FORM_ACTION_ID, field_index, false);
                         }
-                        
+
                         //If we scrolled bellow the current field, move to next field
                         else if(fieldBottom < elemHeight * fractionToJump && $scope.selected.index < $scope.myform.visible_form_fields.length-1 ){
                             field_index = $scope.selected.index+1;
                             $scope.setActiveField(null, field_index, false);
-                        } 
+                        }
                         //If we scrolled above the current field, move to prev field
                         else if ( $scope.selected.index !== 0 && fieldTop > elemHeight * fractionToJump) {
                             field_index = $scope.selected.index-1;
@@ -264,7 +264,7 @@ angular.module('view-form').directive('submitFormDirective', ['$http', 'TimeCoun
 
 						if($scope.selected._id !== FORM_ACTION_ID){
 							var currField = $scope.myform.visible_form_fields[$scope.selected.index];
-						
+
 							//Jump to logicJump's destination if it is true
 							if(currField.logicJump && currField.logicJump.jumpTo && evaluateLogicJump(currField)){
 								$scope.setActiveField(currField.logicJump.jumpTo, null, true);
@@ -281,7 +281,7 @@ angular.module('view-form').directive('submitFormDirective', ['$http', 'TimeCoun
 						//If selected is not defined go to the first field
 						$rootScope.setActiveField(null, 0, true);
 					}
-	
+
                 };
 
                 $rootScope.prevField = $scope.prevField = function(){
@@ -380,7 +380,7 @@ angular.module('view-form').directive('submitFormDirective', ['$http', 'TimeCoun
 						if($scope.myform.form_fields[i].fieldType === 'dropdown' && !$scope.myform.form_fields[i].deletePreserved){
 							$scope.myform.form_fields[i].fieldValue = $scope.myform.form_fields[i].fieldValue.option_value;
 						}
-						
+
 						//Get rid of unnessecary attributes for each form field
 						delete form.form_fields[i].submissionId;
                         			delete form.form_fields[i].disabled;
@@ -389,8 +389,8 @@ angular.module('view-form').directive('submitFormDirective', ['$http', 'TimeCoun
                         			delete form.form_fields[i].logicJump;
                         			delete form.form_fields[i].description;
                         			delete form.form_fields[i].validFieldTypes;
-                        			delete form.form_fields[i].fieldType;	
-					 
+                        			delete form.form_fields[i].fieldType;
+
 					}
 
 					setTimeout(function () {
